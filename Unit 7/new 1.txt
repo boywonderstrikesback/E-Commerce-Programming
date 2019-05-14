@@ -1,0 +1,131 @@
+login as: gcottocruz
+Using keyboard-interactive authentication.
+Password:
+Access denied
+Using keyboard-interactive authentication.
+Password:
+Access denied
+Using keyboard-interactive authentication.
+Password:
+Last login: Sun Oct 16 11:05:27 2016 from 24.239.95.217
+
+show datagcottocruz@gcottocruz.people.ysu.edu [~]#
+gcottocruz@gcottocruz.people.ysu.edu [~]#
+gcottocruz@gcottocruz.people.ysu.edu [~]# show databases
+-jailshell: show: command not found
+gcottocruz@gcottocruz.people.ysu.edu [~]# my sql -u gcottocruz
+-jailshell: my: command not found
+gcottocruz@gcottocruz.people.ysu.edu [~]# mysql -u gcottocruz
+ERROR 1045 (28000): Access denied for user 'gcottocruz'@'localhost' (using passw           ord: NO)
+gcottocruz@gcottocruz.people.ysu.edu [~]# mysql -u gcottocruz -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'gcottocruz'@'localhost' (using passw           ord: YES)
+gcottocruz@gcottocruz.people.ysu.edu [~]# mysql -u gcottocruz -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 167530
+Server version: 5.6.16 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2014, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| ecommer_online2016 |
++--------------------+
+2 rows in set (0.01 sec)
+
+mysql> use ecommr_online2016;
+ERROR 1044 (42000): Access denied for user 'gcottocruz'@'localhost' to database            'ecommr_online2016'
+mysql> use ecommer_online2016;
+Database changed
+mysql> CREATE TABLE supplement_states(
+    -> supplement_states_id TINYINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    -> state VARCHAR(30) NOT NULL,
+    -> abbr  CHAR(2) NOT NULL,
+    -> PRIMARY KEY (supplement_states_id)
+    -> ) ENGINE = InnoDB;
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> show tables;
++------------------------------+
+| Tables_in_ecommer_online2016 |
++------------------------------+
+| supplement_states            |
++------------------------------+
+1 row in set (0.00 sec)
+
+mysql> desc supplement_states;
++----------------------+---------------------+------+-----+---------+-----------           -----+
+| Field                | Type                | Null | Key | Default | Extra                     |
++----------------------+---------------------+------+-----+---------+-----------           -----+
+| supplement_states_id | tinyint(3) unsigned | NO   | PRI | NULL    | auto_incre           ment |
+| state                | varchar(30)         | NO   |     | NULL    |                           |
+| abbr                 | char(2)             | NO   |     | NULL    |                           |
++----------------------+---------------------+------+-----+---------+-----------           -----+
+3 rows in set (0.03 sec)
+
+mysql> CREATE TABLE supplement_customers (
+    -> supplement_customers_id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    -> first_name VARCHAR(30) NOT NULL,
+    -> last_name VARCHAR(40) NOT NULL,
+    -> phone VARCHAR(20) NOT NULL,
+    -> address_1 VARCHAR(20) NOT NULL,
+    -> address_2 VARCHAR(20) NOT NULL,
+    -> city VARCHAR(20) NOT NULL,
+    -> supplement_states_id TINYINT NOT NULL,
+    -> zip VARCHAR(20) NOT NULL,
+    -> date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -> PRIMARY KEY(supplement_customers_id),
+    -> INDEX  ind_supplent_states_id(supplement_states_id),
+    -> CONSTRAINT fk_supplement_states_id FOREIGN KEY (supplement_states_id) REF           ERENCES supplement_states(supplement_states_id)
+    ->
+Display all 741 possibilities? (y or n)
+    -> )ENGINE = InnoDB;
+ERROR 1215 (HY000): Cannot add foreign key constraint
+mysql>  CREATE TABLE supplement_customers (
+    -> supplement_customers_id MEDIUMINT UNSIGNED NOT NULL AUTO_INCREMENT,
+    -> first_name VARCHAR(30) NOT NULL,
+    -> last_name VARCHAR(40) NOT NULL,
+    -> phone VARCHAR(20) NOT NULL,
+    -> address_1 VARCHAR(20) NOT NULL,
+    -> address_2 VARCHAR(20) NOT NULL,
+    -> city VARCHAR(20) NOT NULL,
+    -> supplement_states_id TINYINT UNSIGNED NOT NULL,
+    -> zip VARCHAR(20) NOT NULL,
+    -> date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -> PRIMARY KEY(supplement_customers_id),
+    -> INDEX  ind_supplent_states_id(supplement_states_id),
+    -> CONSTRAINT fk_supplement_states_id FOREIGN KEY (supplement_states_id) REF           ERENCES supplement_states(supplement_states_id)
+    ->
+Display all 741 possibilities? (y or n)
+    -> ON DELETE CASCADE ON UPDATE CASCADE
+    -> )ENGINE = InnoDB;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc supplement_customers;
++-------------------------+-----------------------+------+-----+----------------           ---+----------------+
+| Field                   | Type                  | Null | Key | Default                      | Extra          |
++-------------------------+-----------------------+------+-----+----------------           ---+----------------+
+| supplement_customers_id | mediumint(8) unsigned | NO   | PRI | NULL                         | auto_increment |
+| first_name              | varchar(30)           | NO   |     | NULL                         |                |
+| last_name               | varchar(40)           | NO   |     | NULL                         |                |
+| phone                   | varchar(20)           | NO   |     | NULL                         |                |
+| address_1               | varchar(20)           | NO   |     | NULL                         |                |
+| address_2               | varchar(20)           | NO   |     | NULL                         |                |
+| city                    | varchar(20)           | NO   |     | NULL                         |                |
+| supplement_states_id    | tinyint(3) unsigned   | NO   | MUL | NULL                         |                |
+| zip                     | varchar(20)           | NO   |     | NULL                         |                |
+| date_created            | timestamp             | NO   |     | CURRENT_TIMESTA           MP |                |
++-------------------------+-----------------------+------+-----+----------------           ---+----------------+
+10 rows in set (0.01 sec)
+
+mysql>

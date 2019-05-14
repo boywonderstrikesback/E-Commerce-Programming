@@ -1,0 +1,35 @@
+// assignment 6 response
+
+1.The purpose of the system
+
+	The purpose of the system will be to accept orders as part of an online supplement company.
+
+2.A description of the target audience
+
+	The target audience will be athletes who are looking to improve their abilities and improve their nutrition by the use of supplements.
+
+3.Structure of the database, which will show
+	1.The tables and columns (Unit Objective #2) 
+	
+		The tables and columns will be used to obtain the wanted brands, supplement type, and the various sizes used.
+	
+	2.The storage engine type of the tables (Unit Objective #1)
+	
+		
+	
+	3.Definitions of the columns (i.e. types of the columns) (Unit Objective #6)
+	
+	
+	
+	4.Primary keys and foreign keys (Unit Objective #3, #4)
+	
+		Primary keys will be the order numbers used to identify the orders by the customers.
+	
+	5.The relationship between the tables (Provide information about the tables, which have one-to-one, one-to-many, and many-to-many relationships). An example document for this is provided in the unit. The name of the document is "Hat_tables.doc", and is located in Unit 6 - table of contents. (Unit Objective #5)
+		
+		The relationship between the tables will be based on one-to-many relationship.
+		
+4.A storyboard, which will show
+	1.The pages of the final e-commerce web site
+	2.Navigation buttons and their locations
+	3.The contents of the pages (Briefly outline what each page will have)
